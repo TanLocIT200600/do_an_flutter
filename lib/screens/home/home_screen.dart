@@ -21,12 +21,12 @@ class HomeScreen extends StatelessWidget {
             label: 'Home',
           ),
           BottomNavigationBarItem(
-            icon: Icon(Icons.search),
-            label: 'Search',
+            icon: Icon(Icons.window_outlined),
+            label: 'Category',
           ),
           BottomNavigationBarItem(
-            icon: Icon(Icons.bookmark_border_outlined),
-            label: 'Chats',
+            icon: Icon(Icons.favorite_border_outlined),
+            label: 'Favorite',
           ),
           BottomNavigationBarItem(
             icon: Icon(Icons.menu),
