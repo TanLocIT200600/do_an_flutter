@@ -1,72 +1,73 @@
-// import 'package:flutter/material.dart';
-// import 'package:flutter_application_1/screens/home/home_screen.dart';
-// import 'package:flutter_svg/flutter_svg.dart';
-// import '../constants.dart';
-// import '../enums.dart';
+import 'package:flutter/material.dart';
+import '../screens/home/home_screen.dart';
+import '../screens/category/category_screen.dart';
+import '../screens/favorite/favorite_screen.dart';
+import '../screens/menu/menu_screen.dart';
 
-// class CustomBottomNavBar extends StatelessWidget {
-//   const CustomBottomNavBar({
-//     Key? key,
-//     required this.selectedMenu,
-//   }) : super(key: key);
+class CustomBottomNavigation extends StatefulWidget {
+  const CustomBottomNavigation({Key? key}) : super(key: key);
 
-//   final MenuState selectedMenu;
+  @override
+  State<CustomBottomNavigation> createState() => _CustomBottomNavigationState();
+}
 
-//   @override
-//   Widget build(BuildContext context) {
-//     final Color inActiveIconColor = Color(0xFFB6B6B6);
-//     return Container(
-//       padding: EdgeInsets.symmetric(vertical: 14),
-//       decoration: BoxDecoration(
-//         color: Colors.white,
-//         boxShadow: [
-//           BoxShadow(
-//             offset: Offset(0, -15),
-//             blurRadius: 20,
-//             color: Color(0xFFDADADA).withOpacity(0.15),
-//           ),
-//         ],
-//         borderRadius: BorderRadius.only(
-//           topLeft: Radius.circular(40),
-//           topRight: Radius.circular(40),
-//         ),
-//       ),
-//       child: SafeArea(
-//           top: false,
-//           child: Row(
-//             mainAxisAlignment: MainAxisAlignment.spaceAround,
-//             children: [
-//               IconButton(
-//                 icon: SvgPicture.asset(
-//                   "assets/icons/Shop Icon.svg",
-//                   color: MenuState.home == selectedMenu
-//                       ? kPrimaryColor
-//                       : inActiveIconColor,
-//                 ),
-//                 onPressed: () =>
-//                     Navigator.pushNamed(context, HomeScreen.routeName),
-//               ),
-//               IconButton(
-//                 icon: SvgPicture.asset("assets/icons/Heart Icon.svg"),
-//                 onPressed: () {},
-//               ),
-//               IconButton(
-//                 icon: SvgPicture.asset("assets/icons/Chat bubble Icon.svg"),
-//                 onPressed: () {},
-//               ),
-//               IconButton(
-//                 icon: SvgPicture.asset(
-//                   "assets/icons/User Icon.svg",
-//                   color: MenuState.profile == selectedMenu
-//                       ? kPrimaryColor
-//                       : inActiveIconColor,
-//                 ),
-//                 onPressed: () {},
-//                 // onPressed: () =>
-//                 //     Navigator.pushNamed(context, ProfileScreen.routeName),
-//               ),
-//             ],
-//           )),
-//     );
-//   }
-// }
+class _CustomBottomNavigationState extends State<CustomBottomNavigation> {
+  int selectedIndex = 0;
+
+  Widget _homeScreen = MyHome();
+  Widget _categoryScreen = CategoryScreen();
+  Widget _myEmails = FavoriteScreen();
+  Widget _myProfile = MenuScreen();
+
+  @override
+  Widget build(BuildContext context) {
+    return Scaffold(
+      appBar: AppBar(
+        title: Text("BottomNavigationBar Example"),
+      ),
+      body: getBody(),
+      bottomNavigationBar: BottomNavigationBar(
+        type: BottomNavigationBarType.fixed,
+        backgroundColor: Color.fromARGB(234, 238, 238, 238),
+        onTap: (index) {
+          onTapHandler(index);
+        },
+        selectedIconTheme: IconThemeData(
+          color: Color.fromRGBO(251, 144, 58, 1),
+          opacity: 1.0,
+          size: 45,
+        ),
+        selectedItemColor: Colors.amber[800],
+        unselectedIconTheme:
+            IconThemeData(color: Colors.black45, opacity: 0.5, size: 25),
+        currentIndex: selectedIndex,
+        items: [
+          BottomNavigationBarItem(icon: Icon(Icons.home), label: 'Home'),
+          BottomNavigationBarItem(
+              icon: Icon(Icons.window_outlined), label: 'Category'),
+          BottomNavigationBarItem(
+              icon: Icon(Icons.favorite_border_outlined), label: 'Favorite'),
+          BottomNavigationBarItem(icon: Icon(Icons.menu), label: 'Menu'),
+        ],
+      ),
+    );
+  }
+
+  Widget getBody() {
+    if (selectedIndex == 0) {
+      return _homeScreen;
+    } else if (selectedIndex == 1) {
+      return _categoryScreen;
+    } else if (selectedIndex == 2) {
+      return _myEmails;
+    } else {
+      return _myProfile;
+    }
+  }
+
+  void onTapHandler(int index) {
+    setState(() {
+      selectedIndex = index;
+    });
+  }
+}

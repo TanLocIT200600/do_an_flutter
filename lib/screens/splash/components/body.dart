@@ -67,13 +67,28 @@ class _BodyState extends State<Body> {
                     ),
                   ),
                   Spacer(flex: 3),
-                  DefaultButton(
-                    text: "Continue",
-                    press: () {
-                      Navigator.pushNamed(context, HomeScreen.routeName);
-                    },
-                  ),
-                  Spacer(),
+                  TextButton(
+                      style: ButtonStyle(
+                        foregroundColor:
+                            MaterialStateProperty.all<Color>(Colors.blue),
+                        overlayColor: MaterialStateProperty.resolveWith<Color?>(
+                          (Set<MaterialState> states) {
+                            if (states.contains(MaterialState.hovered))
+                              return Colors.blue.withOpacity(0.04);
+                            if (states.contains(MaterialState.focused) ||
+                                states.contains(MaterialState.pressed))
+                              return Colors.blue.withOpacity(0.12);
+                            return null; // Defer to the widget's default.
+                          },
+                        ),
+                      ),
+                      // onPressed: () {
+                      //   Navigator.pushNamed(context, '/home');
+                      // },
+                      onPressed: () {
+                        Navigator.pushNamed(context, '/');
+                      },
+                      child: Text('TextButton'))
                 ],
               ),
             ),
