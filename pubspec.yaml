@@ -35,6 +35,9 @@ dependencies:
   cupertino_icons: ^1.0.4
   flutter_svg: ^0.17.4 # help us to use svg in our app
   provider: ^4.3.1 # for  state management
+  carousel_slider: ^4.0.0
+  #dot indicator
+  smooth_page_indicator: ^0.3.0-nullsafety.0
 
 dev_dependencies:
   flutter_test:
