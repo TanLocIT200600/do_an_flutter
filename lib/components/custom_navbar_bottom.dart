@@ -5,6 +5,7 @@ import '../screens/favorite/favorite_screen.dart';
 import '../screens/menu/menu_screen.dart';
 
 class CustomBottomNavigation extends StatefulWidget {
+  static const routeName = "bottom-layout";
   const CustomBottomNavigation({Key? key}) : super(key: key);
 
   @override

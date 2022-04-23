@@ -1,7 +1,4 @@
 import 'package:flutter/material.dart';
-import 'package:flutter_application_1/components/default_button.dart';
-import 'package:flutter_application_1/screens/home/home_screen.dart';
-import 'package:flutter_application_1/screens/sign_in/sign_in_screen.dart';
 import 'package:flutter_application_1/screens/splash/components/splash_content.dart';
 import 'package:flutter_application_1/size_config.dart';
 
@@ -67,28 +64,26 @@ class _BodyState extends State<Body> {
                     ),
                   ),
                   Spacer(flex: 3),
-                  TextButton(
-                      style: ButtonStyle(
-                        foregroundColor:
-                            MaterialStateProperty.all<Color>(Colors.blue),
-                        overlayColor: MaterialStateProperty.resolveWith<Color?>(
-                          (Set<MaterialState> states) {
-                            if (states.contains(MaterialState.hovered))
-                              return Colors.blue.withOpacity(0.04);
-                            if (states.contains(MaterialState.focused) ||
-                                states.contains(MaterialState.pressed))
-                              return Colors.blue.withOpacity(0.12);
-                            return null; // Defer to the widget's default.
-                          },
+                  SizedBox(
+                    width: double.infinity,
+                    height: getProportionateScreenHeight(60),
+                    child: FlatButton(
+                        shape: RoundedRectangleBorder(
+                          borderRadius: BorderRadius.circular(25),
                         ),
-                      ),
-                      // onPressed: () {
-                      //   Navigator.pushNamed(context, '/home');
-                      // },
-                      onPressed: () {
-                        Navigator.pushNamed(context, '/');
-                      },
-                      child: Text('TextButton'))
+                        color: kPrimaryColor,
+                        onPressed: () {
+                          Navigator.pushNamed(context, '/');
+                        },
+                        child: Text(
+                          "Get Started",
+                          style: TextStyle(
+                            fontSize: getProportionateScreenWidth(18),
+                            color: Colors.white,
+                          ),
+                        )),
+                  ),
+                  Spacer(flex: 1)
                 ],
               ),
             ),

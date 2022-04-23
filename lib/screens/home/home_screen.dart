@@ -13,40 +13,6 @@ class MyHome extends StatefulWidget {
 class _MyHomeState extends State<MyHome> {
   @override
   Widget build(BuildContext context) {
-    return HeadlingSliderWidget(
-        // children: [
-        // HeadlingSliderWidget(),
-        // Padding(
-        //   padding: const EdgeInsets.all(10.0),
-        //   child: Row(
-        //     children: <Widget>[
-        //       Text(
-        //         "Top channels",
-        //         style: TextStyle(
-        //             color: Colors.black,
-        //             fontWeight: FontWeight.bold,
-        //             fontSize: 17.0),
-        //       ),
-        //     ],
-        //   ),
-        // ),
-        // // TopChannelsWidget(),
-        // Padding(
-        //   padding: const EdgeInsets.all(10.0),
-        //   child: Row(
-        //     children: <Widget>[
-        //       Text(
-        //         "Hot news",
-        //         style: TextStyle(
-        //             color: Colors.black,
-        //             fontWeight: FontWeight.bold,
-        //             fontSize: 17.0),
-        //       ),
-        //     ],
-        //   ),
-        // ),
-        // HotNewsWidget()
-        // ],
-        );
+    return HeadlingSliderWidget();
   }
 }
