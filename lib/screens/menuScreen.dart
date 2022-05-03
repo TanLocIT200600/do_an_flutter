@@ -17,7 +17,7 @@ class _MenuScreenState extends State<MenuScreen> {
         child: AppBar(
           backgroundColor: Style.Colors.mainColor,
           title: Text(
-            "NewsApp",
+            "News App",
             style: TextStyle(color: Colors.white),
           ),
         ),
