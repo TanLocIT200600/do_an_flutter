@@ -30,8 +30,8 @@ class _MainScreenState extends State<MainScreen> {
         child: AppBar(
           backgroundColor: Style.Colors.mainColor,
           title: Text(
-            "NewsApp",
-            style: TextStyle(color: Colors.white),
+            "News App",
+            style: TextStyle(color: Color.fromARGB(255, 40, 40, 40)),
           ),
         ),
       ),
@@ -69,17 +69,17 @@ class _MainScreenState extends State<MainScreen> {
             ),
             child: ClipRRect(
               borderRadius: BorderRadius.only(
-                topLeft: Radius.circular(30.0),
-                topRight: Radius.circular(30.0),
+                topLeft: Radius.circular(0.0),
+                topRight: Radius.circular(0.0),
               ),
               child: BottomNavigationBar(
                 backgroundColor: Colors.white,
-                iconSize: 20,
+                iconSize: 24,
                 unselectedItemColor: Style.Colors.grey,
-                unselectedFontSize: 9.5,
-                selectedFontSize: 9.5,
+                unselectedFontSize: 12,
+                selectedFontSize: 12,
                 type: BottomNavigationBarType.fixed,
-                fixedColor: Style.Colors.mainColor,
+                fixedColor: Style.Colors.mainsColor,
                 currentIndex: snapshot.data.index,
                 onTap: _bottomNavigation.pickItem,
                 items: [
