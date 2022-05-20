@@ -7,6 +7,7 @@ import 'package:flutter_application_1/styles/theme.dart' as Style;
 import '../components/tabs/homeScreen.dart';
 import '../components/tabs/searchScreen.dart';
 import '../components/tabs/sourceScreen.dart';
+import 'package:fluid_bottom_nav_bar/fluid_bottom_nav_bar.dart';
 
 class MainScreen extends StatefulWidget {
   @override
@@ -14,6 +15,7 @@ class MainScreen extends StatefulWidget {
 }
 
 class _MainScreenState extends State<MainScreen> {
+  Widget _child;
   BottomNavigation _bottomNavigation;
   @override
   void initState() {
@@ -23,93 +25,87 @@ class _MainScreenState extends State<MainScreen> {
 
   @override
   Widget build(BuildContext context) {
-    return Scaffold(
-      backgroundColor: Colors.white,
-      appBar: PreferredSize(
-        preferredSize: Size.fromHeight(50.0),
-        child: AppBar(
-          backgroundColor: Style.Colors.mainColor,
-          title: Text(
-            "News App",
-            style: TextStyle(color: Color.fromARGB(255, 40, 40, 40)),
+    return Container(
+      decoration: const BoxDecoration(
+          gradient: LinearGradient(
+              begin: Alignment.topLeft,
+              end: Alignment.bottomRight,
+              colors: [
+            Color.fromARGB(255, 235, 125, 255),
+            Color.fromARGB(255, 255, 223, 80)
+          ])),
+      child: Scaffold(
+        // backgroundColor: Colors.white,
+        backgroundColor: Colors.transparent,
+        appBar: PreferredSize(
+          preferredSize: Size.fromHeight(50.0),
+          child: AppBar(
+            backgroundColor: Style.Colors.mainColor,
+            title: Text(
+              "News App",
+              style: TextStyle(color: Color.fromARGB(255, 40, 40, 40)),
+            ),
+          ),
+        ),
+        extendBody: true,
+        body: _child,
+        bottomNavigationBar: FluidNavBar(
+          icons: [
+            FluidNavBarIcon(
+                icon: Icons.home,
+                backgroundColor: Colors.pink,
+                extras: {"label": "home"}),
+            FluidNavBarIcon(
+                icon: Icons.grid_on_outlined,
+                backgroundColor: Colors.pink,
+                extras: {"label": "category"}),
+            FluidNavBarIcon(
+                icon: Icons.search,
+                backgroundColor: Colors.pink,
+                extras: {"label": "search"}),
+            FluidNavBarIcon(
+                icon: Icons.menu,
+                backgroundColor: Colors.pink,
+                extras: {"label": "menu"}),
+          ],
+          onChange: _handleNavigationChange,
+          style: FluidNavBarStyle(
+              iconSelectedForegroundColor: Colors.white,
+              iconUnselectedForegroundColor: Colors.white60),
+          scaleFactor: 1.5,
+          defaultIndex: 0,
+          itemBuilder: (icon, item) => Semantics(
+            label: icon.extras["label"],
+            child: item,
           ),
         ),
       ),
-      body: SafeArea(
-        child: StreamBuilder<NavBarItem>(
-          stream: _bottomNavigation.itemStream,
-          initialData: _bottomNavigation.defaultItem,
-          // ignore: missing_return
-          builder: (BuildContext context, AsyncSnapshot<NavBarItem> snapshot) {
-            switch (snapshot.data) {
-              case NavBarItem.HOME:
-                return HomeScreen();
-              case NavBarItem.SOURCES:
-                return SourceScreen();
-              case NavBarItem.SEARCH:
-                return SearchScreen();
-              case NavBarItem.MENU:
-                return MenuScreen();
-            }
-          },
-        ),
-      ),
-      bottomNavigationBar: StreamBuilder(
-        stream: _bottomNavigation.itemStream,
-        initialData: _bottomNavigation.defaultItem,
-        builder: (BuildContext context, AsyncSnapshot<NavBarItem> snapshot) {
-          return Container(
-            decoration: BoxDecoration(
-              borderRadius: BorderRadius.only(
-                  topRight: Radius.circular(30), topLeft: Radius.circular(30)),
-              boxShadow: [
-                BoxShadow(
-                    color: Colors.grey[100], spreadRadius: 0, blurRadius: 10),
-              ],
-            ),
-            child: ClipRRect(
-              borderRadius: BorderRadius.only(
-                topLeft: Radius.circular(0.0),
-                topRight: Radius.circular(0.0),
-              ),
-              child: BottomNavigationBar(
-                backgroundColor: Colors.white,
-                iconSize: 24,
-                unselectedItemColor: Style.Colors.grey,
-                unselectedFontSize: 12,
-                selectedFontSize: 12,
-                type: BottomNavigationBarType.fixed,
-                fixedColor: Style.Colors.mainsColor,
-                currentIndex: snapshot.data.index,
-                onTap: _bottomNavigation.pickItem,
-                items: [
-                  BottomNavigationBarItem(
-                    label: "Home",
-                    icon: Icon(EvaIcons.homeOutline),
-                    activeIcon: Icon(EvaIcons.home),
-                  ),
-                  BottomNavigationBarItem(
-                    label: "Sources",
-                    icon: Icon(EvaIcons.gridOutline),
-                    activeIcon: Icon(EvaIcons.grid),
-                  ),
-                  BottomNavigationBarItem(
-                    label: "Search",
-                    icon: Icon(EvaIcons.searchOutline),
-                    activeIcon: Icon(EvaIcons.search),
-                  ),
-                  BottomNavigationBarItem(
-                    label: "Menu",
-                    icon: Icon(EvaIcons.menu),
-                    activeIcon: Icon(EvaIcons.menu),
-                  ),
-                ],
-              ),
-            ),
-          );
-        },
-      ),
     );
+  }
+
+  void _handleNavigationChange(int index) {
+    setState(() {
+      switch (index) {
+        case 0:
+          _child = HomeScreen();
+          break;
+        case 1:
+          _child = SourceScreen();
+          break;
+        case 2:
+          _child = SearchScreen();
+          break;
+        case 3:
+          _child = MenuScreen();
+          break;
+      }
+      _child = AnimatedSwitcher(
+        switchInCurve: Curves.easeOut,
+        switchOutCurve: Curves.easeIn,
+        duration: Duration(milliseconds: 500),
+        child: _child,
+      );
+    });
   }
 
   Widget testScreen() {
