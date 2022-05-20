@@ -31,8 +31,9 @@ class _MainScreenState extends State<MainScreen> {
               begin: Alignment.topLeft,
               end: Alignment.bottomRight,
               colors: [
-            Color.fromARGB(255, 235, 125, 255),
-            Color.fromARGB(255, 255, 223, 80)
+            Color.fromARGB(255, 233, 111, 255),
+            Color.fromARGB(255, 255, 212, 83),
+            Color.fromARGB(255, 255, 223, 80),
           ])),
       child: Scaffold(
         // backgroundColor: Colors.white,
