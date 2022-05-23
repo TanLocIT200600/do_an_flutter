@@ -1,4 +1,5 @@
 import 'package:flutter/material.dart';
+import 'package:flutter_application_1/components/Welcome/welcome.dart';
 import 'package:flutter_application_1/constants.dart';
 import 'package:flutter_application_1/routes.dart';
 import 'package:flutter_application_1/screens/mainScreen.dart';
@@ -16,7 +17,8 @@ class MyApp extends StatelessWidget {
       debugShowCheckedModeBanner: false,
       title: 'Flutter Demo',
       theme: theme(),
-      home: MainScreen(),
+      // home: MainScreen(),
+      home: WelcomeScreen(),
       //we use routeName so that we don't need to remember the name
       // initialRoute: CustomBottomNavigation.routeName,
     );
