@@ -78,18 +78,7 @@ class _SourceScreenState extends State<SourceScreen> {
                 width: 100.0,
                 decoration: BoxDecoration(
                   color: Colors.white,
-                  borderRadius: BorderRadius.all(Radius.circular(5.0)),
-                  boxShadow: [
-                    BoxShadow(
-                      color: Colors.grey[100],
-                      blurRadius: 5.0,
-                      spreadRadius: 1.0,
-                      offset: Offset(
-                        1.0,
-                        1.0,
-                      ),
-                    )
-                  ],
+                  borderRadius: BorderRadius.all(Radius.circular(10.0)),
                 ),
                 child: Column(
                   mainAxisAlignment: MainAxisAlignment.center,

@@ -38,13 +38,23 @@ class _MainScreenState extends State<MainScreen> {
       child: Scaffold(
         // backgroundColor: Colors.white,
         backgroundColor: Colors.transparent,
-        appBar: PreferredSize(
-          preferredSize: Size.fromHeight(50.0),
-          child: AppBar(
-            backgroundColor: Style.Colors.mainColor,
-            title: Text(
-              "News App",
-              style: TextStyle(color: Color.fromARGB(255, 40, 40, 40)),
+        appBar: AppBar(
+          title: const Text(
+            'News App',
+            textAlign: TextAlign.center,
+            style: TextStyle(color: Colors.black),
+          ),
+          flexibleSpace: Container(
+            decoration: const BoxDecoration(
+              gradient: LinearGradient(
+                begin: Alignment.centerLeft,
+                end: Alignment.centerRight,
+                colors: [
+                  Color.fromARGB(255, 233, 111, 255),
+                  Color.fromARGB(255, 255, 212, 83),
+                  Color.fromARGB(255, 255, 223, 80),
+                ],
+              ),
             ),
           ),
         ),

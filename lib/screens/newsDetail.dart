@@ -43,18 +43,25 @@ class _DetailNewsState extends State<DetailNews> {
         ),
       ),
       appBar: AppBar(
-        elevation: 0.0,
-        backgroundColor: Style.Colors.mainColor,
-        title: new Text(
-          article.title,
-          style: TextStyle(
-              fontSize: Theme.of(context).platform == TargetPlatform.iOS
-                  ? 17.0
-                  : 17.0,
-              color: Color.fromARGB(255, 35, 35, 35),
-              fontWeight: FontWeight.bold),
+          title: const Text(
+            'News App',
+            textAlign: TextAlign.center,
+            style: TextStyle(color: Colors.black),
+          ),
+          flexibleSpace: Container(
+            decoration: const BoxDecoration(
+              gradient: LinearGradient(
+                begin: Alignment.centerLeft,
+                end: Alignment.centerRight,
+                colors: [
+                  Color.fromARGB(255, 233, 111, 255),
+                  Color.fromARGB(255, 255, 212, 83),
+                  Color.fromARGB(255, 255, 223, 80),
+                ],
+              ),
+            ),
+          ),
         ),
-      ),
       body: ListView(
         children: <Widget>[
           AspectRatio(

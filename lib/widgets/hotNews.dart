@@ -1,7 +1,7 @@
 import 'package:flutter/material.dart';
 import '../../styles/theme.dart' as Style;
 import 'package:timeago/timeago.dart' as timeago;
-
+import 'package:favorite_button/favorite_button.dart';
 import '../components/error.dart';
 import '../components/loader.dart';
 import '../models/article.dart';
@@ -59,7 +59,7 @@ class _HotNewsWidgetState extends State<HotNewsWidget> {
       );
     } else
       return Container(
-        height: articles.length / 2 * 210.0,
+        height: articles.length / 2 * 310.0,
         padding: EdgeInsets.all(5.0),
         child: new GridView.builder(
           physics: NeverScrollableScrollPhysics(),
@@ -79,21 +79,10 @@ class _HotNewsWidgetState extends State<HotNewsWidget> {
                               )));
                 },
                 child: Container(
-                  width: 220.0,
+                  width: 250.0,
                   decoration: BoxDecoration(
                     color: Colors.white,
-                    borderRadius: BorderRadius.all(Radius.circular(5.0)),
-                    boxShadow: [
-                      BoxShadow(
-                        color: Colors.grey[100],
-                        blurRadius: 5.0,
-                        spreadRadius: 1.0,
-                        offset: Offset(
-                          1.0,
-                          1.0,
-                        ),
-                      )
-                    ],
+                    borderRadius: BorderRadius.all(Radius.circular(10.0)),
                   ),
                   child: Column(
                     children: <Widget>[
@@ -113,10 +102,10 @@ class _HotNewsWidgetState extends State<HotNewsWidget> {
                       ),
                       Container(
                         padding: EdgeInsets.only(
-                            left: 10.0, right: 10.0, top: 15.0, bottom: 15.0),
+                            left: 10.0, right: 10.0, top: 7.0, bottom: 7.0),
                         child: Text(
                           articles[index].title,
-                          textAlign: TextAlign.center,
+                          textAlign: TextAlign.start,
                           maxLines: 2,
                           style: TextStyle(height: 1.3, fontSize: 15.0),
                         ),
@@ -138,20 +127,27 @@ class _HotNewsWidgetState extends State<HotNewsWidget> {
                         ],
                       ),
                       Padding(
-                        padding: const EdgeInsets.all(10.0),
+                        padding: EdgeInsets.only(
+                            left: 10.0, right: 10.0, top: 0.0, bottom: 3.0),
                         child: Row(
                           mainAxisAlignment: MainAxisAlignment.spaceBetween,
                           children: [
                             Text(
-                              articles[index].source.name,
-                              style: TextStyle(
-                                  color: Style.Colors.mainColor, fontSize: 9.0),
-                            ),
-                            Text(
                               timeUntil(DateTime.parse(articles[index].date)),
                               style: TextStyle(
-                                  color: Colors.black54, fontSize: 9.0),
-                            )
+                                  color: Colors.black54, fontSize: 12.0),
+                            ),
+                            Container(
+                              padding: const EdgeInsets.all(0),
+                              child: IconButton(
+                                padding: const EdgeInsets.all(0),
+                                alignment: Alignment.centerRight,
+                                icon: Icon(Icons.favorite),
+                                color: Colors.red[500],
+                                iconSize: 20.0,
+                                onPressed: () {},
+                              ),
+                            ),
                           ],
                         ),
                       )
