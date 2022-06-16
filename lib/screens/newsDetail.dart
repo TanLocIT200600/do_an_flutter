@@ -23,10 +23,18 @@ class _DetailNewsState extends State<DetailNews> {
           launch(article.url);
         },
         child: Container(
-          height: 48.0,
-          width: MediaQuery.of(context).size.width,
+          height: 50.0,
+          width: 100.0,
           decoration: BoxDecoration(
-              color: Colors.white, gradient: Style.Colors.primaryGradient),
+              gradient: LinearGradient(colors: [
+                Colors.blueAccent,
+                Colors.redAccent,
+                Colors.purpleAccent
+              ]),
+              borderRadius: BorderRadius.circular(50),
+              boxShadow: <BoxShadow>[
+                BoxShadow(color: Color.fromRGBO(0, 0, 0, 0.57), blurRadius: 5)
+              ]),
           child: Column(
             mainAxisAlignment: MainAxisAlignment.center,
             crossAxisAlignment: CrossAxisAlignment.center,
@@ -43,25 +51,25 @@ class _DetailNewsState extends State<DetailNews> {
         ),
       ),
       appBar: AppBar(
-          title: const Text(
-            'News App',
-            textAlign: TextAlign.center,
-            style: TextStyle(color: Colors.black),
-          ),
-          flexibleSpace: Container(
-            decoration: const BoxDecoration(
-              gradient: LinearGradient(
-                begin: Alignment.centerLeft,
-                end: Alignment.centerRight,
-                colors: [
-                  Color.fromARGB(255, 233, 111, 255),
-                  Color.fromARGB(255, 255, 212, 83),
-                  Color.fromARGB(255, 255, 223, 80),
-                ],
-              ),
+        title: const Text(
+          'News App',
+          textAlign: TextAlign.center,
+          style: TextStyle(color: Colors.black),
+        ),
+        flexibleSpace: Container(
+          decoration: const BoxDecoration(
+            gradient: LinearGradient(
+              begin: Alignment.centerLeft,
+              end: Alignment.centerRight,
+              colors: [
+                Color.fromARGB(255, 233, 111, 255),
+                Color.fromARGB(255, 255, 212, 83),
+                Color.fromARGB(255, 255, 223, 80),
+              ],
             ),
           ),
         ),
+      ),
       body: ListView(
         children: <Widget>[
           AspectRatio(
@@ -112,10 +120,19 @@ class _DetailNewsState extends State<DetailNews> {
                   style: TextStyle(color: Colors.grey, fontSize: 12.0),
                 ),
                 SizedBox(
-                  height: 5.0,
+                  height: 10.0,
                 ),
                 Html(
                   data: article.content,
+                  renderNewlines: true,
+                  defaultTextStyle:
+                      TextStyle(fontSize: 14.0, color: Colors.black87),
+                ),
+                SizedBox(
+                  height: 10.0,
+                ),
+                Html(
+                  data: article.description,
                   renderNewlines: true,
                   defaultTextStyle:
                       TextStyle(fontSize: 14.0, color: Colors.black87),

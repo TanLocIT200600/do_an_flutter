@@ -1,7 +1,6 @@
 import 'package:flutter/material.dart';
 import '../../styles/theme.dart' as Style;
 import 'package:timeago/timeago.dart' as timeago;
-import 'package:favorite_button/favorite_button.dart';
 import '../components/error.dart';
 import '../components/loader.dart';
 import '../models/article.dart';

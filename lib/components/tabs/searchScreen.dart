@@ -136,15 +136,32 @@ class _SearchScreenState extends State<SearchScreen> {
                   border: Border(
                     top: BorderSide(color: Colors.grey[200], width: 1.0),
                   ),
+                  // borderRadius: BorderRadius.circular(5),
                   color: Colors.white,
                 ),
                 height: 150,
+                margin: const EdgeInsets.fromLTRB(15.0, 10.0, 15.0, 10.0),
+                padding: EdgeInsets.fromLTRB(10.0, 10.0, 10.0, 10.0),
                 child: Row(
                   children: <Widget>[
                     Container(
+                        padding: EdgeInsets.only(right: 10.0),
+                        width: 170,
+                        height: 130,
+                        child: FadeInImage.assetNetwork(
+                            alignment: Alignment.topCenter,
+                            placeholder: 'assets/img/placeholder.jpg',
+                            image: articles[index].img == null
+                                ? "http://to-let.com.bd/operator/images/noimage.png"
+                                : articles[index].img,
+                            fit: BoxFit.fitHeight,
+                            width: double.maxFinite,
+                            height:
+                                MediaQuery.of(context).size.height * 1 / 3)),
+                    Container(
                       padding: EdgeInsets.only(
                           top: 10.0, left: 10.0, bottom: 10.0, right: 10.0),
-                      width: MediaQuery.of(context).size.width * 3 / 5,
+                      width: 160,
                       child: Column(
                         mainAxisAlignment: MainAxisAlignment.start,
                         crossAxisAlignment: CrossAxisAlignment.start,
@@ -159,17 +176,29 @@ class _SearchScreenState extends State<SearchScreen> {
                               child: Align(
                             alignment: Alignment.bottomLeft,
                             child: Row(
-                              mainAxisAlignment: MainAxisAlignment.spaceBetween,
+                              mainAxisAlignment: MainAxisAlignment.end,
                               children: <Widget>[
                                 Row(
                                   children: <Widget>[
                                     Text(
-                                        timeUntil(DateTime.parse(
-                                            articles[index].date)),
-                                        style: TextStyle(
-                                            color: Colors.black26,
-                                            fontWeight: FontWeight.bold,
-                                            fontSize: 10.0))
+                                      timeUntil(
+                                          DateTime.parse(articles[index].date)),
+                                      style: TextStyle(
+                                          color: Colors.black26,
+                                          fontWeight: FontWeight.bold,
+                                          fontSize: 10.0),
+                                    ),
+                                    Container(
+                                      padding: const EdgeInsets.all(0),
+                                      child: IconButton(
+                                        padding: const EdgeInsets.all(0),
+                                        alignment: Alignment.centerRight,
+                                        icon: Icon(Icons.favorite),
+                                        color: Colors.red[500],
+                                        iconSize: 20.0,
+                                        onPressed: () {},
+                                      ),
+                                    ),
                                   ],
                                 ),
                               ],
@@ -178,19 +207,6 @@ class _SearchScreenState extends State<SearchScreen> {
                         ],
                       ),
                     ),
-                    Container(
-                        padding: EdgeInsets.only(right: 10.0),
-                        width: MediaQuery.of(context).size.width * 2 / 5,
-                        height: 130,
-                        child: FadeInImage.assetNetwork(
-                            alignment: Alignment.topCenter,
-                            placeholder: 'assets/img/placeholder.jpg',
-                            image: articles[index].img == null
-                                ? "http://to-let.com.bd/operator/images/noimage.png"
-                                : articles[index].img,
-                            fit: BoxFit.fitHeight,
-                            width: double.maxFinite,
-                            height: MediaQuery.of(context).size.height * 1 / 3))
                   ],
                 ),
               ),

@@ -75,7 +75,7 @@ class _MainScreenState extends State<MainScreen> {
                 backgroundColor: Colors.pink,
                 extras: {"label": "search"}),
             FluidNavBarIcon(
-                icon: Icons.menu,
+                icon: Icons.favorite_border,
                 backgroundColor: Colors.pink,
                 extras: {"label": "menu"}),
           ],
